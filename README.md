@@ -7,7 +7,7 @@ Código em qualidade `alpha`. Não está completo e pode mudar a qualquer moment
 ### Primeira autenticação
 
 ```go
-    client = melhorenvio.NewClient(ctx, melhorenvio.Config{
+	client = melhorenvio.NewClient(ctx, melhorenvio.Config{
 		Credentials: melhorenvio.Credentials{
 			ClientId:     1234,
 			ClientSecret: "{secret}",
@@ -18,15 +18,15 @@ Código em qualidade `alpha`. Não está completo e pode mudar a qualquer moment
 		Email:           "{email de contato técnico}",
 		CredentialsChangedCallback: func(credentials melhorenvio.Credentials) error {
 			// função executada de forma síncrona
-            // executada em toda atualização de token
-            // o salvamento das credenciais pode ser feito por aqui
-            // o erro retornado aqui é repassado para a chamada da função
-            // que executou a atualização de token
+			// executada em toda atualização de token
+			// o salvamento das credenciais pode ser feito por aqui
+			// o erro retornado aqui é repassado para a chamada da função
+			// que executou a atualização de token
 			return nil
 		},
 	})
 
-    // executa a requisição de obtenção de token a partir do code
+	// executa a requisição de obtenção de token a partir do code
 	err := client.AutenticateByCode()
 	if err != nil {
 		panic(err)
@@ -36,7 +36,7 @@ Código em qualidade `alpha`. Não está completo e pode mudar a qualquer moment
 ### Cotação de Frete
 
 ```go
-    client = melhorenvio.NewClient(ctx, melhorenvio.Config{
+	client = melhorenvio.NewClient(ctx, melhorenvio.Config{
 		Credentials: melhorenvio.Credentials{
 			ClientId:     1234,
 			ClientSecret: "{secret}",
@@ -48,12 +48,12 @@ Código em qualidade `alpha`. Não está completo e pode mudar a qualquer moment
 		ApplicationName: "{nome do app}",
 		Email:           "{email de contato técnico}",
 		CredentialsChangedCallback: func(credentials melhorenvio.Credentials) error {
-            // caso ocorra atualização do token (refresh), essa função será chamada
+			// caso ocorra atualização do token (refresh), essa função será chamada
 			return nil
 		},
 	})
 
-    resp, err := client.CotarFrete(&melhorenvio.CotacaoRequest{
+	resp, err := client.CotarFrete(&melhorenvio.CotacaoRequest{
 		From: melhorenvio.ToFrom{
 			PostalCode: "{cep origem}",
 		},
