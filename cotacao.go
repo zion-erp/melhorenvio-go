@@ -12,20 +12,18 @@ type ToFrom struct {
 	PostalCode string `json:"postal_code"`
 }
 
+type Dimensions struct {
+	Height float64 `json:"height"`
+	Width  float64 `json:"width"`
+	Length float64 `json:"length"`
+}
+
 type Product struct {
-	ID             string  `json:"id"`
-	Width          int32   `json:"width"`
-	Height         int32   `json:"height"`
-	Length         int32   `json:"length"`
+	ID string `json:"id"`
+	Dimensions
 	Weight         float64 `json:"weight"`
 	InsuranceValue float64 `json:"insurance_value"`
 	Quantity       int32   `json:"quantity"`
-}
-
-type Dimensions struct {
-	Height int32 `json:"height"`
-	Width  int32 `json:"width"`
-	Length int32 `json:"length"`
 }
 
 type Volume struct {
