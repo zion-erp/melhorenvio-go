@@ -28,13 +28,16 @@ type Product struct {
 
 type Volume struct {
 	Dimensions
-	Weight         float64 `json:"weight"`
-	InsuranceValue float64 `json:"insurance_value"`
+	Weight float64 `json:"weight"`
+
+	// tá na api mas aparentemente não faz nada quando usado no cálculo de fretes, então removi do json, mas mantive aqui pra usar em lógicas internas em algumas aplicações
+	InsuranceValue float64 `json:"-"`
 }
 
 type Options struct {
-	Receipt bool `json:"receipt"`
-	OwnHand bool `json:"own_hand"`
+	Receipt        bool    `json:"receipt"`
+	OwnHand        bool    `json:"own_hand"`
+	InsuranceValue float64 `json:"insurance_value,omitempty"` // utilizado no cálculo de frete por volumes
 }
 
 type CotacaoRequest struct {
@@ -51,13 +54,13 @@ type DeliveryRange struct {
 }
 
 type Package struct {
-	Price          string     `json:"price"`
-	Discount       string     `json:"discount"`
-	Format         string     `json:"format"`
-	Dimensions     Dimensions `json:"dimensions"`
-	Weight         string     `json:"weight"`
-	InsuranceValue string     `json:"insurance_value"`
-	Products       []Product  `json:"products"`
+	Price          string      `json:"price"`
+	Discount       string      `json:"discount"`
+	Format         string      `json:"format"`
+	Dimensions     Dimensions  `json:"dimensions"`
+	Weight         json.Number `json:"weight"`
+	InsuranceValue json.Number `json:"insurance_value"`
+	Products       []Product   `json:"products"`
 }
 
 type AdditionalService struct {
@@ -66,11 +69,11 @@ type AdditionalService struct {
 	Collect bool `json:"collect"`
 }
 
-type Company struct {
-	ID      int32  `json:"id"`
-	Name    string `json:"name"`
-	Picture string `json:"picture"`
-}
+// type Company struct {
+// 	ID      int32  `json:"id"`
+// 	Name    string `json:"name"`
+// 	Picture string `json:"picture"`
+// }
 
 type CotacaoResponse struct {
 	ID                  int32             `json:"id"`
