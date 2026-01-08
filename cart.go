@@ -75,6 +75,11 @@ type CartResponseVolume struct {
 	UpdatedAt string `json:"updated_at"`
 }
 
+type CartAdditionalInfo struct {
+	OriginIBGE      string `json:"origin_ibge,omitempty"`
+	DestinationIBGE string `json:"destination_ibge,omitempty"`
+}
+
 type CartResponse struct {
 	Id                 string  `json:"id"`
 	Protocol           string  `json:"protocol"`
@@ -108,7 +113,7 @@ type CartResponse struct {
 	Tracking          string               `json:"tracking"`
 	SelfTracking      string               `json:"self_tracking"`
 	DeliveryReceipt   string               `json:"delivery_receipt"`
-	AdditionalInfo    string               `json:"additional_info"`
+	AdditionalInfo    CartAdditionalInfo   `json:"additional_info"`
 	CteKey            string               `json:"cte_key"`
 	PaidAt            string               `json:"paid_at"`
 	GeneratedAt       string               `json:"generated_at"`
