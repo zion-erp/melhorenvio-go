@@ -30,12 +30,11 @@ type CheckoutResponse struct {
 }
 
 type CheckoutError struct {
-	Message string              `json:"message"`
-	Errors  map[string][]string `json:"errors"`
+	Errors string `json:"error"`
 }
 
 func (ce *CheckoutError) Error() string {
-	return "melhor envio: checkout: " + ce.Message + ": " + fmt.Sprintf("%v", ce.Errors)
+	return "melhor envio: checkout: " + ce.Errors
 }
 
 func (c *Client) Checkout(req *CheckoutRequest) (*CheckoutResponse, error) {
@@ -57,6 +56,9 @@ func (c *Client) Checkout(req *CheckoutRequest) (*CheckoutResponse, error) {
 	defer httpResp.Body.Close()
 
 	body, _ := io.ReadAll(httpResp.Body)
+
+	// fmt.Printf("status code: %d\n", httpResp.StatusCode)
+	// fmt.Printf("body: %s\n", string(body))
 
 	switch httpResp.StatusCode {
 	case http.StatusOK:
